@@ -1,0 +1,34 @@
+.Dd $Mdocdate$ 
+.Dt SALT-GET-CONFIG-DIR 1
+.Os Nasqueron
+.Sh NAME 
+.Nm salt-get-config-dir
+.Nd determine the Salt configuration directory from the current working directory
+.Sh SYNOPSIS 
+.Nm salt-get-config-dir
+.Sh DESCRIPTION 
+The 
+.Nm 
+utility finds a match between the current working directory and the wrapper
+configuration file, then prints to stdout the matching configuration directory.
+.Sh ENVIRONMENT
+.Bl -tag -width SALT_WRAPPER_CONF
+.It Ev  SALT_WRAPPER_CONF
+Path to the configuration file. If omitted, the default path
+.Pa /usr/local/etc/salt-wrapper.conf
+will be used.
+.Elb
+.Sh EXIT STATUS
+The
+.Nm
+utility exits 0 on success, 1 the directory can't be found
+and >1 if an error occurs.
+.Sh SEE ALSO 
+.Xr salt-wrapper 1
+.Xr salt-wrapper.conf 5
+.Sh CAVEATS 
+.Nm
+is not intended to be called explicitly from the command line,
+but used by the
+.Nm salt-wrapper
+command.

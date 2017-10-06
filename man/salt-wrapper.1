@@ -1,0 +1,50 @@
+.Dd $Mdocdate$ 
+.Dt SALT-WRAPPER 1
+.Os Nasqueron
+.Sh NAME 
+.Nm salt-wrapper 
+.Nd invoke Salt with correct config dir and sudo capability
+.Sh SYNOPSIS 
+.Nm salt-wrapper
+.Ar salt-command
+.Op ...
+.Sh DESCRIPTION 
+The 
+.Nm 
+utility invokes the specified Salt command, prepended by a sudo
+call to execute the command as the Salt user (see below).
+
+.Nm
+also appends a
+.Ar --config-dir
+argument, with the Salt configuration directory matching the
+current working directory, as provided by the
+.Nm salt-get-config-dir
+program.
+.Sh SALT USER 
+Every command is executed as the
+.Sy salt
+user.
+
+The
+.Nm
+.Ar salt-call
+.Ar --local
+command will execute as
+.Sy root
+instead, to allow to modify the current server.
+.Sh EXIT STATUS
+The
+.Nm
+utility exits 0 on success, and >0 if an error occurs.
+.Sh SEE ALSO 
+.Xr salt-get-config-dir 1
+.Xr salt-wrapper.conf 5
+.Sh CAVEATS 
+.Nm
+is not intended to be called explicitly from the command line,
+but aliased in the shell to wrap implicitly and automatically
+the Salt command.
+
+https://docs.nasqueron.org/salt-wrapper/admin.html#shell-aliases
+gives the syntax to use for C and bourne shells.

@@ -1,0 +1,56 @@
+.Dd $Mdocdate$ 
+.Dt MAIN-WRAPPER.CONF 5
+.Os Nasqueron
+.Sh NAME 
+.Pa /usr/local/etc/salt-wrapper.conf
+.Nd configure salt-wrapper
+.Sh DESCRIPTION
+The
+.Pa /usr/local/etc/salt-wrapper.conf
+configuration file contains a map of directories for the 
+.Nm salt-get-config-dir
+command.
+
+The map is the answer to the question “For a given current working directory, what's the Salt configuration directory to use?”.
+.Sh FILE FORMAT
+The configuration file is written in JSON.
+
+The
+.Va roots
+.Vt array
+contains an entry for each directory to map.
+
+Each entry is an
+.Vt object
+with two
+.Vt strings
+to map the directories:
+.Bl -tag -offset indent -width states
+.It Va config
+The directory containing the Salt configuration
+.It Va states
+The current working directory containing the Salt states
+.El
+.Sh EXAMPLE
+The following file can be used to use the default Salt config directory for 
+.Pa /opt/nasqueron-operations
+but a custom secondary config directory for
+.Pa /opt/woodscloud-operations
+working directory:
+.Bd -literal -offset indent
+{
+  "roots": [
+    {
+      "config": "/usr/local/etc/salt-woodscloud",
+      "states": "/opt/woodscloud-operations"
+    },
+    {
+      "config": "/usr/local/etc/salt",
+      "states": "/opt/nasqueron-operations"
+    }
+  ]
+}
+.Ed
+.Sh SEE ALSO 
+.Xr salt-wrapper 1
+.Xr salt-get-config-dir 1
