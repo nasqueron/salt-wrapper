@@ -37,7 +37,7 @@ contains() {
 CONFIG_DIR=$(salt-get-config-dir)
 CODE=$?
 if [ $CODE -ne 0 ]; then
-	exit $CODE
+    exit $CODE
 fi
 
 EXECUTABLE=$1
@@ -47,7 +47,7 @@ shift
 # master without a minion running, we need to run as root.
 SALT_USER=salt
 if [ "$EXECUTABLE" = "salt-call" ]; then
-	contains "$*" "--local" && SALT_USER=root
+    contains "$*" "--local" && SALT_USER=root
 fi
 
 sudo -u $SALT_USER "$EXECUTABLE" --config-dir="$CONFIG_DIR" "$@"
