@@ -149,10 +149,10 @@ You add to your ``.cshrc`` file the following aliases:
    alias salt-run 'salt-wrapper salt-run'
    alias salt-ssh 'salt-wrapper salt-ssh'
 
-bash
-----
+bash or zsh
+-----------
 
-You can add to your ``.profile`` or ``.bashrc`` file the following aliases:
+You can add to your ``.profile``, ``.bashrc`` or ``.zshrc`` file the following aliases:
 
 .. code-block:: bash
 
